@@ -4,9 +4,9 @@
 // scale D major, notes D5 to F#6
 int notes[] ={587,659,740,784, 880,988,1109,1174,1318,1479};
 // 4 note lenghts and 1 break
-int note_length[] = {180,220,460,700,240};
+int note_length[] = {150,170,310,530,180};
 // delay between note and next note, corresponds to same index in note_lenght
-int note_delay[] = {60,20,20,20,0};
+int note_delay[] = {30,10,10,10,0};
 // stores all the notes in the song, -1 being break;
 int song_notes[] =        {-1,4,5,7,9,9,8,9,7,-1,7,8,8,7,8,6,-1,4,6,7,6,5,-1,4,2,4,0,-1,4,5,7,9,9,8,9,7,-1,7,8,8,7,8,6,-1,4,6,7,6,5,-1,5,-1,5,-1,5,6,7};;
 // stores the lenght of each note in the song
