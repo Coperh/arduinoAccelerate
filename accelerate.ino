@@ -1,28 +1,38 @@
-#define MUSIC_PIN 8
 
+#define BUZZER_PIN 8
 
-//            D=0 E=1 F#=2 G=3 A=4 B=5 C#=6  D=7 E=8 F#=9
+// scale D major, notes D5 to F#6
 int notes[] ={587,659,740,784, 880,988,1109,1174,1318,1479};
-// eight, quarter, half, half + quarter
+// 4 note lenghts and 1 break
 int note_length[] = {180,220,460,700,240};
+// delay between note and next note, corresponds to same index in note_lenght
 int note_delay[] = {60,20,20,20,0};
-int song[] =       {-1,4,5,7,9,9,8,9,7,-1,7,8,8,7,8,6,-1,4,6,7,6,5,-1,4,2,4,0, -1,4,5,7,9,9,8,9,7,-1,7,8,8,7,8,6,-1,4,6,7,6,5,-1,5,-1,5,-1,5,6,7};
-int song_notes[] = { 4,1,0,0,0,0,0,2,1, 4,1,0,0,0,2,1, 4,1,0,0,0,1, 4,0,3,0,0,  4,1,0,0,0,0,0,2,1, 1,1,0,0,0,2,1, 4,1,0,0,0,1, 4,1, 4,1, 4,1,1,1};
-void setup() {
+// stores all the notes in the song, -1 being break;
+int song_notes[] =        {-1,4,5,7,9,9,8,9,7,-1,7,8,8,7,8,6,-1,4,6,7,6,5,-1,4,2,4,0,-1,4,5,7,9,9,8,9,7,-1,7,8,8,7,8,6,-1,4,6,7,6,5,-1,5,-1,5,-1,5,6,7};;
+// stores the lenght of each note in the song
+int song_notes_length[] = { 4,1,0,0,0,0,0,2,1, 4,1,0,0,0,2,1, 4,1,0,0,0,1, 4,0,3,0,0, 4,1,0,0,0,0,0,2,1, 1,1,0,0,0,2,1, 4,1,0,0,0,1, 4,1, 4,1, 4,1,1,1};
 
+
+void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  
-  for ( int i = 0; i < sizeof(song)/sizeof(song[0]); i++){
-    int current_note = song[i];
-    int lenght = note_length[song_notes[i]];
-    int n_delay = note_delay[song_notes[i]];
+  // will loop the melody
+  for ( int i = 0; i < sizeof(song_notes)/sizeof(song_notes[0]); i++){
+    // gets current note in song
+    int current_note = song_notes[i];
+    // lenght of the current note
+    int lenght = note_length[song_notes_length[i]];
+    // delay between the next note
+    int n_delay = note_delay[song_notes_length[i]];
+
+    // if not a break
     if (current_note != -1){
+      // get frequency of current note
       int note = notes[current_note];
-      tone(MUSIC_PIN, note, lenght);
+      tone(BUZZER_PIN, note, lenght);
     }
+    
     delay(lenght+n_delay);
   }
 
